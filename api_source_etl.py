@@ -11,7 +11,6 @@ import psycopg2
 import psycopg2.extras as extras
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
 from dotenv import load_dotenv
 import pprint
 import warnings
@@ -197,7 +196,7 @@ def load():
     cursor.close()
 
     # get all loaded data from db
-    q = f'SELECT * FROM {TABLE};'
+    q = f'SELECT * FROM {TABLE} ORDER BY last_update;'
     loaded_data = pd.read_sql(q, conn)
     loaded_data.to_csv(f'{DUMP_DIR}/3_loaded_data.csv', index=False)
     
@@ -216,7 +215,7 @@ default_args = {
 }
 
 with DAG(dag_id='api_source_etl', default_args=default_args,
-        schedule_interval='*/5 * * * *', catchup=False) as dag:
+        schedule_interval='@hourly', catchup=False) as dag:
 
     dir_prep = PythonOperator(
         task_id='prepare_dump_directory',
