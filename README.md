@@ -16,10 +16,10 @@ This is an ETL pipeline project with the batching method for collecting and proc
 	1. Bottom-Up approach.
     create functions and files and then put them together.
 	2. Create database.
-    ![Database Architecture in PostgreSQL](img\table_postgres.png)  
+    ![Database Architecture in PostgreSQL](img/table_postgres.png "Database Architecture in PostgreSQL")  
 	3. Configure dump directory.
     the prevent file conflicts during processing and also to save memory (there are also cost considerations when using a paid service).
-    ![Dump Directory](img\dump_dir.png)
+    ![Dump Directory](img/dump_dir.png "Dump Directory")
   4. Build pipeline.
       ```python
       with DAG(dag_id='api_source_etl', default_args=default_args,
@@ -74,12 +74,12 @@ This is an ETL pipeline project with the batching method for collecting and proc
         ```
 	2. Running pipeline.
     Pipeline created with 4 steps as follows:    
-    ![Pipeline Graph](img\pipeline_graph.png)
+    ![Pipeline Graph](img/pipeline_graph.png "Pipeline Graph")
 * **Maintain**
 	1. Monitoring pipeline
-    ![Monitoring Pipeline in Airflow](img\airflow.png)
+    ![Monitoring Pipeline in Airflow](img/airflow.png "Monitoring Pipeline in Airflow")
 	2. Monitoring result in database
-    ![Loaded Data in PostgreSQL](img\loaded_data_result.png)
+    ![Loaded Data in PostgreSQL](img/loaded_data_result.png "Loaded Data in PostgreSQL")
 
 # Future Improvement
 
